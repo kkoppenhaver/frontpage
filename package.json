@@ -1,0 +1,18 @@
+{
+  "name": "react-starter",
+  "version": "1.0.0",
+  "author": "Bryan Paronto <bparonto@gmail.com> (http://bryanparonto.com/)",
+  "devDependencies": {
+    "babelify": "^6.3.0",
+    "http-server": "^0.8.5",
+    "react": "^0.13.3",
+    "watchify": "^3.4.0"
+  },
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "serve": "./node_modules/http-server/bin/http-server",
+    "start": "watchify ./src/main.js -t babelify --outfile ./build/bundle.js",
+    "build": "NODE_ENV=production browserify ./src/main.js -t babelify --outfile ./build/bundle.js"
+  }
+}
