@@ -6,6 +6,7 @@
     "babelify": "^6.3.0",
     "http-server": "^0.8.5",
     "react": "^0.13.3",
+    "react-grid-layout": "^0.8.5",
     "watchify": "^3.4.0"
   },
   "license": "ISC",
