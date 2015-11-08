@@ -13,13 +13,14 @@ Protips:
 
 TO-DO
 
-* Make React Grid layout actually work
-* Be able to add and remove items dynamically
-* Assign props to items by flipping card around
-* Pull categories from WP
-* Assign categories to modules
-* Pull top story from category into module
-* Ad modules?
+- [] Make React Grid layout actually work
+- [] Be able to add and remove items dynamically
+- [] Assign props to items by flipping card around
+- [] Pull categories from WP
+- [] Assign categories to modules
+- [] Pull top story from category into module
+- [] Save layout/modules to WP User Meta
+- [] Ad modules?
 
 
 Other possible project names

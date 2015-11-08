@@ -1,5 +1,7 @@
 var React = window.React = require('react'); //expose for react-devtools
 
+var ReactGridLayout = require('react-grid-layout');
+
 var App = React.createClass({
     render: function(){
         return(
