@@ -35467,11 +35467,16 @@ var AddRemoveLayout = React.createClass({
     var i = el.add ? '+' : el.i;
     return React.createElement(
       'div',
-      { key: i, _grid: el },
+      { className: el.add ? 'add-block' : '', key: i, _grid: el },
       el.add ? React.createElement(
         'span',
         { className: 'add text', onClick: this.onAddItem, title: 'You can add an item by clicking here, too.' },
-        'Add +'
+        React.createElement('i', { className: 'fa fa-plus' }),
+        React.createElement(
+          'h1',
+          null,
+          'Add Module'
+        )
       ) : React.createElement(
         'span',
         { className: 'text' },
@@ -35480,7 +35485,7 @@ var AddRemoveLayout = React.createClass({
       React.createElement(
         'span',
         { className: 'remove', style: removeStyle, onClick: this.onRemoveItem.bind(this, i) },
-        'x'
+        React.createElement('i', { className: 'fa fa-times' })
       )
     );
   },
@@ -35518,11 +35523,6 @@ var AddRemoveLayout = React.createClass({
     return React.createElement(
       'div',
       null,
-      React.createElement(
-        'button',
-        { onClick: this.onAddItem },
-        'Add Item'
-      ),
       React.createElement(
         ResponsiveReactGridLayout,
         _extends({ onLayoutChange: this.onLayoutChange, onBreakpointChange: this.onBreakpointChange

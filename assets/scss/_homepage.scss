@@ -1,3 +1,13 @@
+body {
+	font-family: 'Lato', sans-serif;
+}
+
+h1 {
+	font-weight: 200;
+	margin-top: 10px;
+	text-align: center;
+}
+
 .react-grid-layout {
     background-color: rgba(0,0,0,.3);
 }
@@ -5,8 +15,30 @@
 .react-grid-item {
     background-color: white;
     padding: 0px;
+    text-align: center;
+    z-index: 10;
+
+    span.remove {
+    	color: $blue-gray;
+    	font-size: 18px;
+    	top: 5px !important;
+    	left: 10px !important;
+    	width: 14px;
+    }
 }
 
 .react-grid-placeholder {
-    background-color: rgba(255,0,0,.3);
+    background-color: darken($blue-gray, 10%);
+    z-index: 1;
+}
+
+.add-block {
+	background-color: $blue-gray;
+	color: white;
+	text-align: center;
+
+	i {
+		font-size: 26px;
+		margin-top: 15%;
+	}
 }

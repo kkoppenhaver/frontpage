@@ -33,11 +33,14 @@ var AddRemoveLayout = React.createClass({
     };
     var i = el.add ? '+' : el.i;
     return (
-      <div key={i} _grid={el}>
+      <div className={el.add ? 'add-block' : ''} key={i} _grid={el}>
         {el.add ?
-          <span className="add text" onClick={this.onAddItem} title="You can add an item by clicking here, too.">Add +</span>
+          <span className="add text" onClick={this.onAddItem} title="You can add an item by clicking here, too.">
+            <i className="fa fa-plus"></i>
+            <h1>Add Module</h1>
+          </span>
         : <span className="text">{i}</span>}
-        <span className="remove" style={removeStyle} onClick={this.onRemoveItem.bind(this, i)}>x</span>
+        <span className="remove" style={removeStyle} onClick={this.onRemoveItem.bind(this, i)}><i className="fa fa-times"></i></span>
       </div>
     );
   },
@@ -74,7 +77,6 @@ var AddRemoveLayout = React.createClass({
   render() {
     return (
       <div>
-        <button onClick={this.onAddItem}>Add Item</button>
         <ResponsiveReactGridLayout onLayoutChange={this.onLayoutChange} onBreakpointChange={this.onBreakpointChange}
             {...this.props}>
           {_.map(this.state.items, this.createElement)}
