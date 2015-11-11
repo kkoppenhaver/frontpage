@@ -25,6 +25,26 @@ h1 {
     	left: 10px !important;
     	width: 14px;
     }
+
+    .react-resizable-handle {
+        color: $blue-gray;
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+
+        transform: rotate(45deg);
+
+        &:before {
+            content:"\f105";
+            font-family: FontAwesome;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
 
 .react-grid-placeholder {
@@ -37,8 +57,16 @@ h1 {
 	color: white;
 	text-align: center;
 
+    .add.text {
+        cursor: pointer;
+    }
+
 	i {
 		font-size: 26px;
 		margin-top: 15%;
 	}
+
+    .react-resizable-handle {
+        color: white;
+    }
 }

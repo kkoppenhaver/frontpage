@@ -20,6 +20,19 @@ h1 {
     top: 5px !important;
     left: 10px !important;
     width: 14px; }
+  .react-grid-item .react-resizable-handle {
+    color: #6C7C8B;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    transform: rotate(45deg); }
+    .react-grid-item .react-resizable-handle:before {
+      content: "\f105";
+      font-family: FontAwesome; }
+    .react-grid-item .react-resizable-handle:hover {
+      cursor: pointer; }
 
 .react-grid-placeholder {
   background-color: #56626e;
@@ -29,9 +42,13 @@ h1 {
   background-color: #6C7C8B;
   color: white;
   text-align: center; }
+  .add-block .add.text {
+    cursor: pointer; }
   .add-block i {
     font-size: 26px;
     margin-top: 15%; }
+  .add-block .react-resizable-handle {
+    color: white; }
 
 
 /*# sourceMappingURL=main.css.map */

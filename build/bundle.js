@@ -35444,7 +35444,9 @@ var AddRemoveLayout = React.createClass({
     return {
       className: "layout",
       cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
-      rowHeight: 100
+      rowHeight: 100,
+      isDraggable: true,
+      isResizable: true
     };
   },
 
