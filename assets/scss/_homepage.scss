@@ -1,11 +1,5 @@
 body {
-	font-family: 'Lato', sans-serif;
-}
-
-h1 {
-	font-weight: 200;
-	margin-top: 10px;
-	text-align: center;
+    font-size: 14px;
 }
 
 .react-grid-layout {
@@ -15,7 +9,6 @@ h1 {
 .react-grid-item {
     background-color: white;
     padding: 0px;
-    text-align: center;
     z-index: 10;
 
     span.remove {
@@ -70,3 +63,137 @@ h1 {
         color: white;
     }
 }
+
+/* entire container, keeps perspective */
+.card-wrapper {
+    perspective: 1000;
+
+    background-color: rgba(0,0,0,.1);
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* flip the pane when class added */
+.card-wrapper.flip .card {
+    transform: rotateY(180deg);
+}
+
+.card-wrapper, .front, .back {
+    height: 100%;
+    width: 100%
+}
+
+ /* flip speed goes here */
+.card {
+    height: 100%;
+
+    transition: 0.6s;
+    transform-style: preserve-3d;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    backface-visibility: hidden;
+    background-color: white;
+    text-align: left;
+    padding: 20px;
+    width: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
+
+    padding-top: 20px;
+}
+
+/* back, initially hidden pane */
+.back {
+    transform: rotateY(180deg);
+}
+
+.settings{
+    color: #ccc;
+    font-size: 18px;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+
+    :hover {
+        color: #333;
+        cursor: pointer;
+    }
+}
+
+.done {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+}
+
+.author {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.publication {
+    font-size: 12px;
+    font-weight: 200;
+    text-transform: uppercase;
+}
+
+.content {
+    overflow: auto;
+    max-height: 300px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    p{
+        font-size: 14px;
+    }
+
+    img {
+        margin-bottom: 20px;
+    }
+}
+
+.continue, .read-more {
+    font-size: 14px;
+}
+
+.content::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+.content::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.full-story {
+    display: none;
+}
+
+p.block-quote {
+    padding-left: 20px;
+  font-style: italic;
+  font-size: 14px;
+  border-left: 5px solid #3b5998;
+}
+
+
+

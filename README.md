@@ -15,7 +15,7 @@ TO-DO
 
 - [x] Make React Grid layout actually work
 - [x] Be able to add and remove items dynamically
-- [] Make items be able to be dragged bigger and smaller
+- [x] Make items be able to be dragged bigger and smaller
 - [] Make cards flippable
 - [] Assign props to items
 - [] Create Reddit Module

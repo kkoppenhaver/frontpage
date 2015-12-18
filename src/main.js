@@ -3,6 +3,55 @@ var React = require('react');
 var _ = require('lodash');
 var ResponsiveReactGridLayout = require('react-grid-layout').Responsive;
 
+var StoryCard = React.createClass({
+
+  render(){
+    return (
+      <div className="card-wrapper {this.isFlipped ? 'flip' : ''}" {...this.props}>
+        <div className="card">
+          <div className="front">
+            <h1>Column</h1>
+            <hr/>
+            <h3>Headline</h3>
+            <div className="author">by john doe</div>
+            <div className="publication">frontpage news daily</div>
+
+            <div className="content">
+              Visiblecontent
+            </div>
+
+            <span className="continue"><a href="#">Continue reading</a> or </span><a href="#" className="read-more" target="_blank">Check out the full story</a>
+
+            <div className="full-story">
+              Rest of the story content
+            </div>
+
+            <div className="settings"><i className="fa fa-gear"></i></div>
+          </div>
+          <div className="back">
+            <h3>Settings</h3>
+            <hr/>
+            <label>Column Name
+              <select>
+                <option value="on-the-hill">On the Hill</option>
+                <option value="tech-corner">Tech Corner</option>
+              </select>
+            </label>
+
+            <label>Update:
+              <select>
+                <option value="5">Every 5 minutes</option>
+                <option value="15">Every 15 minutes</option>
+              </select>
+            </label>
+            <button className="done">Done</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+});
+
 /**
  * This layout demonstrates how to use a grid with a dynamic number of elements.
  */
@@ -19,61 +68,11 @@ var AddRemoveLayout = React.createClass({
 
   getInitialState() {
     return {
-      items: [0, 1, 2, 3, 4].map(function(i, key, list) {
-        return {i: i, x: i * 2, y: 0, w: 2, h: 2, add: i === list.length - 1};
+      items: [0, 1, 2, 3].map(function(i, key, list) {
+        return {i: i, x: i * 3, y: 0, w: 3, h: 5};
       }),
       newCounter: 0
     };
-  },
-
-  createElement(el) {
-    var removeStyle = {
-      position: 'absolute',
-      right: '2px',
-      top: 0,
-      cursor: 'pointer'
-    };
-    var i = el.add ? '+' : el.i;
-    return (
-      <div className={el.add ? 'add-block' : ''} key={i} _grid={el}>
-        {el.add ?
-          <span className="add text" onClick={this.onAddItem} title="You can add an item by clicking here, too.">
-            <i className="fa fa-plus"></i>
-            <h1>Add Module</h1>
-          </span>
-        : <span className="text">{i}</span>}
-        <span className="remove" style={removeStyle} onClick={this.onRemoveItem.bind(this, i)}><i className="fa fa-times"></i></span>
-      </div>
-    );
-  },
-
-  onAddItem() {
-    console.log('adding', 'n' + this.state.newCounter);
-    this.setState({
-      // Add a new item. It must have a unique key!
-      items: this.state.items.concat({
-        i: 'n' + this.state.newCounter,
-        x: this.state.items.length * 2 % (this.state.cols || 12),
-        y: Infinity, // puts it at the bottom
-        w: 2,
-        h: 2
-      }),
-      // Increment the counter to ensure key is always unique.
-      newCounter: this.state.newCounter + 1
-    });
-  },
-
-  // We're using the cols coming back from this to calculate where to add new items.
-  onBreakpointChange(breakpoint, cols) {
-    this.setState({
-      breakpoint: breakpoint,
-      cols: cols
-    });
-  },
-
-  onRemoveItem(i) {
-    console.log('removing', i);
-    this.setState({items: _.reject(this.state.items, {i: i})});
   },
 
   render() {
@@ -81,7 +80,10 @@ var AddRemoveLayout = React.createClass({
       <div>
         <ResponsiveReactGridLayout onLayoutChange={this.onLayoutChange} onBreakpointChange={this.onBreakpointChange}
             {...this.props}>
-          {_.map(this.state.items, this.createElement)}
+          <StoryCard key={1} _grid={{x: 0, y: 0, w: 3, h: 4, isDraggable: true, isResizable: true}}/>
+          <StoryCard key={2} _grid={{x: 3, y: 0, w: 3, h: 4, isDraggable: true, isResizable: true}}/>
+          <StoryCard key={3} _grid={{x: 6, y: 0, w: 3, h: 4, isDraggable: true, isResizable: true}}/>
+          <StoryCard key={4} _grid={{x: 9, y: 0, w: 3, h: 4, isDraggable: true, isResizable: true}}/>
         </ResponsiveReactGridLayout>
       </div>
     );
@@ -92,4 +94,3 @@ module.exports = AddRemoveLayout;
 
 
 React.render(<AddRemoveLayout/>, document.getElementById('app'))
-

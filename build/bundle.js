@@ -35434,6 +35434,129 @@ var React = require('react');
 var _ = require('lodash');
 var ResponsiveReactGridLayout = require('react-grid-layout').Responsive;
 
+var StoryCard = React.createClass({
+  displayName: 'StoryCard',
+
+  render: function render() {
+    return React.createElement(
+      'div',
+      _extends({ className: 'card-wrapper {this.isFlipped ? \'flip\' : \'\'}' }, this.props),
+      React.createElement(
+        'div',
+        { className: 'card' },
+        React.createElement(
+          'div',
+          { className: 'front' },
+          React.createElement(
+            'h1',
+            null,
+            'Column'
+          ),
+          React.createElement('hr', null),
+          React.createElement(
+            'h3',
+            null,
+            'Headline'
+          ),
+          React.createElement(
+            'div',
+            { className: 'author' },
+            'by john doe'
+          ),
+          React.createElement(
+            'div',
+            { className: 'publication' },
+            'frontpage news daily'
+          ),
+          React.createElement(
+            'div',
+            { className: 'content' },
+            'Visiblecontent'
+          ),
+          React.createElement(
+            'span',
+            { className: 'continue' },
+            React.createElement(
+              'a',
+              { href: '#' },
+              'Continue reading'
+            ),
+            ' or '
+          ),
+          React.createElement(
+            'a',
+            { href: '#', className: 'read-more', target: '_blank' },
+            'Check out the full story'
+          ),
+          React.createElement(
+            'div',
+            { className: 'full-story' },
+            'Rest of the story content'
+          ),
+          React.createElement(
+            'div',
+            { className: 'settings' },
+            React.createElement('i', { className: 'fa fa-gear' })
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'back' },
+          React.createElement(
+            'h3',
+            null,
+            'Settings'
+          ),
+          React.createElement('hr', null),
+          React.createElement(
+            'label',
+            null,
+            'Column Name',
+            React.createElement(
+              'select',
+              null,
+              React.createElement(
+                'option',
+                { value: 'on-the-hill' },
+                'On the Hill'
+              ),
+              React.createElement(
+                'option',
+                { value: 'tech-corner' },
+                'Tech Corner'
+              )
+            )
+          ),
+          React.createElement(
+            'label',
+            null,
+            'Update:',
+            React.createElement(
+              'select',
+              null,
+              React.createElement(
+                'option',
+                { value: '5' },
+                'Every 5 minutes'
+              ),
+              React.createElement(
+                'option',
+                { value: '15' },
+                'Every 15 minutes'
+              )
+            )
+          ),
+          React.createElement(
+            'button',
+            { className: 'done' },
+            'Done'
+          )
+        )
+      )
+    );
+  }
+});
+
 /**
  * This layout demonstrates how to use a grid with a dynamic number of elements.
  */
@@ -35452,73 +35575,11 @@ var AddRemoveLayout = React.createClass({
 
   getInitialState: function getInitialState() {
     return {
-      items: [0, 1, 2, 3, 4].map(function (i, key, list) {
-        return { i: i, x: i * 2, y: 0, w: 2, h: 2, add: i === list.length - 1 };
+      items: [0, 1, 2, 3].map(function (i, key, list) {
+        return { i: i, x: i * 3, y: 0, w: 3, h: 5 };
       }),
       newCounter: 0
     };
-  },
-
-  createElement: function createElement(el) {
-    var removeStyle = {
-      position: 'absolute',
-      right: '2px',
-      top: 0,
-      cursor: 'pointer'
-    };
-    var i = el.add ? '+' : el.i;
-    return React.createElement(
-      'div',
-      { className: el.add ? 'add-block' : '', key: i, _grid: el },
-      el.add ? React.createElement(
-        'span',
-        { className: 'add text', onClick: this.onAddItem, title: 'You can add an item by clicking here, too.' },
-        React.createElement('i', { className: 'fa fa-plus' }),
-        React.createElement(
-          'h1',
-          null,
-          'Add Module'
-        )
-      ) : React.createElement(
-        'span',
-        { className: 'text' },
-        i
-      ),
-      React.createElement(
-        'span',
-        { className: 'remove', style: removeStyle, onClick: this.onRemoveItem.bind(this, i) },
-        React.createElement('i', { className: 'fa fa-times' })
-      )
-    );
-  },
-
-  onAddItem: function onAddItem() {
-    console.log('adding', 'n' + this.state.newCounter);
-    this.setState({
-      // Add a new item. It must have a unique key!
-      items: this.state.items.concat({
-        i: 'n' + this.state.newCounter,
-        x: this.state.items.length * 2 % (this.state.cols || 12),
-        y: Infinity, // puts it at the bottom
-        w: 2,
-        h: 2
-      }),
-      // Increment the counter to ensure key is always unique.
-      newCounter: this.state.newCounter + 1
-    });
-  },
-
-  // We're using the cols coming back from this to calculate where to add new items.
-  onBreakpointChange: function onBreakpointChange(breakpoint, cols) {
-    this.setState({
-      breakpoint: breakpoint,
-      cols: cols
-    });
-  },
-
-  onRemoveItem: function onRemoveItem(i) {
-    console.log('removing', i);
-    this.setState({ items: _.reject(this.state.items, { i: i }) });
   },
 
   render: function render() {
@@ -35529,7 +35590,10 @@ var AddRemoveLayout = React.createClass({
         ResponsiveReactGridLayout,
         _extends({ onLayoutChange: this.onLayoutChange, onBreakpointChange: this.onBreakpointChange
         }, this.props),
-        _.map(this.state.items, this.createElement)
+        React.createElement(StoryCard, { key: 1, _grid: { x: 0, y: 0, w: 3, h: 4, isDraggable: true, isResizable: true } }),
+        React.createElement(StoryCard, { key: 2, _grid: { x: 3, y: 0, w: 3, h: 4, isDraggable: true, isResizable: true } }),
+        React.createElement(StoryCard, { key: 3, _grid: { x: 6, y: 0, w: 3, h: 4, isDraggable: true, isResizable: true } }),
+        React.createElement(StoryCard, { key: 4, _grid: { x: 9, y: 0, w: 3, h: 4, isDraggable: true, isResizable: true } })
       )
     );
   }
