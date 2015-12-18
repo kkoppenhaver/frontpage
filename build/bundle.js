@@ -35450,7 +35450,7 @@ var StoryCard = React.createClass({
   render: function render() {
     return React.createElement(
       'div',
-      _extends({ className: 'card-wrapper flip' }, this.props),
+      _extends({ className: 'card-wrapper' }, this.props),
       React.createElement(
         'div',
         { className: 'card' },

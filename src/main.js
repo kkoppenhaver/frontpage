@@ -16,7 +16,7 @@ var StoryCard = React.createClass({
   },
   render(){
     return (
-      <div className="card-wrapper flip" {...this.props}>
+      <div className="card-wrapper" {...this.props}>
         <div className="card">
           <div className="front">
             <h1>Column</h1>
