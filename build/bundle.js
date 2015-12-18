@@ -35434,23 +35434,42 @@ var React = require('react');
 var _ = require('lodash');
 var ResponsiveReactGridLayout = require('react-grid-layout').Responsive;
 
-var StoryCard = React.createClass({
-  displayName: 'StoryCard',
+/**
+ * This layout demonstrates how to use a grid with a dynamic number of elements.
+ */
+var AddRemoveLayout = React.createClass({
+  displayName: 'AddRemoveLayout',
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      className: "layout",
+      cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
+      rowHeight: 100,
+      isDraggable: true,
+      isResizable: true
+    };
+  },
 
   getInitialState: function getInitialState() {
-    return { isFlipped: 'false' };
+    return {
+      items: [0, 1, 2, 3].map(function (i, key, list) {
+        return { i: i, x: i * 3, y: 0, w: 3, h: 5 };
+      }),
+      newCounter: 0
+    };
   },
-  onFlip: function onFlip() {
-    console.log(this.state.isFlipped);
-    this.setState({
-      isFlipped: 'true'
-    });
-    console.log(this.state);
-  },
-  render: function render() {
+
+  createElement: function createElement(el) {
+    var removeStyle = {
+      position: 'absolute',
+      right: '2px',
+      top: 0,
+      cursor: 'pointer'
+    };
+    var i = el.add ? '+' : el.i;
     return React.createElement(
       'div',
-      _extends({ className: 'card-wrapper' }, this.props),
+      { className: 'card-wrapper {el.add ? \'add-block\' : \'\'}', key: i, _grid: el },
       React.createElement(
         'div',
         { className: 'card' },
@@ -35481,7 +35500,7 @@ var StoryCard = React.createClass({
           React.createElement(
             'div',
             { className: 'content' },
-            this.state.isFlipped
+            'Visiblecontent'
           ),
           React.createElement(
             'span',
@@ -35505,7 +35524,7 @@ var StoryCard = React.createClass({
           ),
           React.createElement(
             'div',
-            { className: 'settings', onClick: this.onFlip },
+            { className: 'settings', onClick: this.settingsFlip.bind(this, i) },
             React.createElement('i', { className: 'fa fa-gear' })
           )
         ),
@@ -35564,32 +35583,44 @@ var StoryCard = React.createClass({
         )
       )
     );
-  }
-});
-
-/**
- * This layout demonstrates how to use a grid with a dynamic number of elements.
- */
-var AddRemoveLayout = React.createClass({
-  displayName: 'AddRemoveLayout',
-
-  getDefaultProps: function getDefaultProps() {
-    return {
-      className: "layout",
-      cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
-      rowHeight: 100,
-      isDraggable: true,
-      isResizable: true
-    };
   },
 
-  getInitialState: function getInitialState() {
-    return {
-      items: [0, 1, 2, 3].map(function (i, key, list) {
-        return { i: i, x: i * 3, y: 0, w: 3, h: 5 };
+  settingsFlip: function settingsFlip(cardIndex, event) {
+    $('.card-wrapper').eq(cardIndex).addClass('flip');
+    event.preventDefault();
+  },
+  doneFlip: function doneFlip(cardIndex, event) {
+    alert('doneFlip!');
+    $('.card-wrapper').eq(i).removeClass('flip');
+  },
+
+  onAddItem: function onAddItem() {
+    console.log('adding', 'n' + this.state.newCounter);
+    this.setState({
+      // Add a new item. It must have a unique key!
+      items: this.state.items.concat({
+        i: 'n' + this.state.newCounter,
+        x: this.state.items.length * 2 % (this.state.cols || 12),
+        y: Infinity, // puts it at the bottom
+        w: 2,
+        h: 2
       }),
-      newCounter: 0
-    };
+      // Increment the counter to ensure key is always unique.
+      newCounter: this.state.newCounter + 1
+    });
+  },
+
+  // We're using the cols coming back from this to calculate where to add new items.
+  onBreakpointChange: function onBreakpointChange(breakpoint, cols) {
+    this.setState({
+      breakpoint: breakpoint,
+      cols: cols
+    });
+  },
+
+  onRemoveItem: function onRemoveItem(i) {
+    console.log('removing', i);
+    this.setState({ items: _.reject(this.state.items, { i: i }) });
   },
 
   render: function render() {
@@ -35600,10 +35631,10 @@ var AddRemoveLayout = React.createClass({
         ResponsiveReactGridLayout,
         _extends({ onLayoutChange: this.onLayoutChange, onBreakpointChange: this.onBreakpointChange
         }, this.props),
-        React.createElement(StoryCard, { key: 1, _grid: { x: 0, y: 0, w: 12, h: 4, isDraggable: true, isResizable: true } }),
-        React.createElement(StoryCard, { key: 2, _grid: { x: 0, y: 4, w: 4, h: 6, isDraggable: true, isResizable: true } }),
-        React.createElement(StoryCard, { key: 3, _grid: { x: 4, y: 0, w: 4, h: 6, isDraggable: true, isResizable: true } }),
-        React.createElement(StoryCard, { key: 4, _grid: { x: 8, y: 0, w: 4, h: 6, isDraggable: true, isResizable: true } })
+        this.createElement({ i: 0, x: 0, y: 0, w: 12, h: 4 }),
+        this.createElement({ i: 1, x: 0, y: 0, w: 4, h: 5 }),
+        this.createElement({ i: 2, x: 4, y: 0, w: 4, h: 5 }),
+        this.createElement({ i: 3, x: 8, y: 0, w: 4, h: 5 })
       )
     );
   }
@@ -35612,5 +35643,7 @@ var AddRemoveLayout = React.createClass({
 module.exports = AddRemoveLayout;
 
 React.render(React.createElement(AddRemoveLayout, null), document.getElementById('app'));
+
+React;
 
 },{"lodash":1,"react":179,"react-grid-layout":9}]},{},[181]);
