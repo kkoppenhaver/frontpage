@@ -35437,10 +35437,20 @@ var ResponsiveReactGridLayout = require('react-grid-layout').Responsive;
 var StoryCard = React.createClass({
   displayName: 'StoryCard',
 
+  getInitialState: function getInitialState() {
+    return { isFlipped: 'false' };
+  },
+  onFlip: function onFlip() {
+    console.log(this.state.isFlipped);
+    this.setState({
+      isFlipped: 'true'
+    });
+    console.log(this.state);
+  },
   render: function render() {
     return React.createElement(
       'div',
-      _extends({ className: 'card-wrapper {this.isFlipped ? \'flip\' : \'\'}' }, this.props),
+      _extends({ className: 'card-wrapper flip' }, this.props),
       React.createElement(
         'div',
         { className: 'card' },
@@ -35471,7 +35481,7 @@ var StoryCard = React.createClass({
           React.createElement(
             'div',
             { className: 'content' },
-            'Visiblecontent'
+            this.state.isFlipped
           ),
           React.createElement(
             'span',
@@ -35495,7 +35505,7 @@ var StoryCard = React.createClass({
           ),
           React.createElement(
             'div',
-            { className: 'settings' },
+            { className: 'settings', onClick: this.onFlip },
             React.createElement('i', { className: 'fa fa-gear' })
           )
         ),
@@ -35590,10 +35600,10 @@ var AddRemoveLayout = React.createClass({
         ResponsiveReactGridLayout,
         _extends({ onLayoutChange: this.onLayoutChange, onBreakpointChange: this.onBreakpointChange
         }, this.props),
-        React.createElement(StoryCard, { key: 1, _grid: { x: 0, y: 0, w: 3, h: 4, isDraggable: true, isResizable: true } }),
-        React.createElement(StoryCard, { key: 2, _grid: { x: 3, y: 0, w: 3, h: 4, isDraggable: true, isResizable: true } }),
-        React.createElement(StoryCard, { key: 3, _grid: { x: 6, y: 0, w: 3, h: 4, isDraggable: true, isResizable: true } }),
-        React.createElement(StoryCard, { key: 4, _grid: { x: 9, y: 0, w: 3, h: 4, isDraggable: true, isResizable: true } })
+        React.createElement(StoryCard, { key: 1, _grid: { x: 0, y: 0, w: 12, h: 4, isDraggable: true, isResizable: true } }),
+        React.createElement(StoryCard, { key: 2, _grid: { x: 0, y: 4, w: 4, h: 6, isDraggable: true, isResizable: true } }),
+        React.createElement(StoryCard, { key: 3, _grid: { x: 4, y: 0, w: 4, h: 6, isDraggable: true, isResizable: true } }),
+        React.createElement(StoryCard, { key: 4, _grid: { x: 8, y: 0, w: 4, h: 6, isDraggable: true, isResizable: true } })
       )
     );
   }

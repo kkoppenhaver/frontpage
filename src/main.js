@@ -4,10 +4,19 @@ var _ = require('lodash');
 var ResponsiveReactGridLayout = require('react-grid-layout').Responsive;
 
 var StoryCard = React.createClass({
-
+  getInitialState: function() {
+    return {isFlipped: 'false'};
+  },
+  onFlip: function(){
+    console.log(this.state.isFlipped);
+    this.setState({
+      isFlipped : 'true'
+    });
+    console.log(this.state);
+  },
   render(){
     return (
-      <div className="card-wrapper {this.isFlipped ? 'flip' : ''}" {...this.props}>
+      <div className="card-wrapper flip" {...this.props}>
         <div className="card">
           <div className="front">
             <h1>Column</h1>
@@ -17,7 +26,7 @@ var StoryCard = React.createClass({
             <div className="publication">frontpage news daily</div>
 
             <div className="content">
-              Visiblecontent
+              {this.state.isFlipped}
             </div>
 
             <span className="continue"><a href="#">Continue reading</a> or </span><a href="#" className="read-more" target="_blank">Check out the full story</a>
@@ -26,7 +35,7 @@ var StoryCard = React.createClass({
               Rest of the story content
             </div>
 
-            <div className="settings"><i className="fa fa-gear"></i></div>
+            <div className="settings" onClick={this.onFlip}><i className="fa fa-gear"></i></div>
           </div>
           <div className="back">
             <h3>Settings</h3>
@@ -80,10 +89,10 @@ var AddRemoveLayout = React.createClass({
       <div>
         <ResponsiveReactGridLayout onLayoutChange={this.onLayoutChange} onBreakpointChange={this.onBreakpointChange}
             {...this.props}>
-          <StoryCard key={1} _grid={{x: 0, y: 0, w: 3, h: 4, isDraggable: true, isResizable: true}}/>
-          <StoryCard key={2} _grid={{x: 3, y: 0, w: 3, h: 4, isDraggable: true, isResizable: true}}/>
-          <StoryCard key={3} _grid={{x: 6, y: 0, w: 3, h: 4, isDraggable: true, isResizable: true}}/>
-          <StoryCard key={4} _grid={{x: 9, y: 0, w: 3, h: 4, isDraggable: true, isResizable: true}}/>
+          <StoryCard key={1} _grid={{x: 0, y: 0, w: 12, h: 4, isDraggable: true, isResizable: true}}/>
+          <StoryCard key={2} _grid={{x: 0, y: 4, w: 4, h: 6, isDraggable: true, isResizable: true}}/>
+          <StoryCard key={3} _grid={{x: 4, y: 0, w: 4, h: 6, isDraggable: true, isResizable: true}}/>
+          <StoryCard key={4} _grid={{x: 8, y: 0, w: 4, h: 6, isDraggable: true, isResizable: true}}/>
         </ResponsiveReactGridLayout>
       </div>
     );
