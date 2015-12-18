@@ -1,6 +1,9 @@
 body {
   font-size: 14px; }
 
+h1, h3 {
+  font-family: "chaparral-pro"; }
+
 .react-grid-layout {
   background-color: rgba(0, 0, 0, 0.3); }
 
@@ -79,6 +82,11 @@ body {
   position: absolute;
   top: 0;
   left: 0; }
+  .front .banner, .back .banner {
+    background-position: center center;
+    background-size: cover;
+    height: 200px;
+    width: 100%; }
 
 /* front pane, placed above back */
 .front {
@@ -108,16 +116,19 @@ body {
   padding: 10px 20px; }
 
 .author {
+  font-family: "freight-sans-pro";
   font-size: 12px;
   font-weight: bold;
   text-transform: uppercase; }
 
 .publication {
+  font-family: "freight-sans-pro";
   font-size: 12px;
   font-weight: 200;
   text-transform: uppercase; }
 
 .content {
+  font-family: "freight-sans-pro";
   overflow: auto;
   max-height: 300px;
   margin-top: 20px;

@@ -38,14 +38,17 @@ var AddRemoveLayout = React.createClass({
       <div className="card-wrapper {el.add ? 'add-block' : ''}" key={i} _grid={el}>
         <div className="card">
           <div className="front">
-            <h1>Column</h1>
+            <h1>Leaders & Success</h1>
             <hr/>
-            <h3>Headline</h3>
-            <div className="author">by john doe</div>
-            <div className="publication">frontpage news daily</div>
+            <h3>He Put A Powerful Punch In Information Collection</h3>
+            <div className="author">by shana smith</div>
+            <div className="publication">for investor's business daily</div>
 
             <div className="content">
-              Visiblecontent
+              <div className="banner" style={{backgroundImage: 'url(/assets/img/article.png)'}}></div>
+              On the eve of 1890’s Census tabulation, Herman Hollerith was ready. He had been working on his
+              punch-card machine for years, since a superior in the U.S. Census Office had observed, “There ought to be a machine for doing the purely mechanical work” of counting.
+              The 1880 Census, done manually, had taken 10 years to count...
             </div>
 
             <span className="continue"><a href="#">Continue reading</a> or </span><a href="#" className="read-more" target="_blank">Check out the full story</a>
@@ -122,10 +125,10 @@ var AddRemoveLayout = React.createClass({
       <div>
         <ResponsiveReactGridLayout onLayoutChange={this.onLayoutChange} onBreakpointChange={this.onBreakpointChange}
             {...this.props}>
-          {this.createElement({i: 0, x: 0, y: 0, w: 12, h: 4})}
-          {this.createElement({i: 1, x: 0, y: 0, w: 4, h: 5})}
-          {this.createElement({i: 2, x: 4, y: 0, w: 4, h: 5})}
-          {this.createElement({i: 3, x: 8, y: 0, w: 4, h: 5})}
+          {this.createElement({i: 0, x: 0, y: 0, w: 8, h: 6})}
+          {this.createElement({i: 1, x: 0, y: 6, w: 8, h: 8})}
+          {this.createElement({i: 2, x: 8, y: 0, w: 4, h: 7})}
+          {this.createElement({i: 3, x: 8, y: 7, w: 4, h: 7})}
         </ResponsiveReactGridLayout>
       </div>
     );

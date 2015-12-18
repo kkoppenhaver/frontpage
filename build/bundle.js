@@ -35479,28 +35479,29 @@ var AddRemoveLayout = React.createClass({
           React.createElement(
             'h1',
             null,
-            'Column'
+            'Leaders & Success'
           ),
           React.createElement('hr', null),
           React.createElement(
             'h3',
             null,
-            'Headline'
+            'He Put A Powerful Punch In Information Collection'
           ),
           React.createElement(
             'div',
             { className: 'author' },
-            'by john doe'
+            'by shana smith'
           ),
           React.createElement(
             'div',
             { className: 'publication' },
-            'frontpage news daily'
+            'for investor\'s business daily'
           ),
           React.createElement(
             'div',
             { className: 'content' },
-            'Visiblecontent'
+            React.createElement('div', { className: 'banner', style: { backgroundImage: 'url(/assets/img/article.png)' } }),
+            'On the eve of 1890’s Census tabulation, Herman Hollerith was ready. He had been working on his punch-card machine for years, since a superior in the U.S. Census Office had observed, “There ought to be a machine for doing the purely mechanical work” of counting. The 1880 Census, done manually, had taken 10 years to count...'
           ),
           React.createElement(
             'span',
@@ -35631,10 +35632,10 @@ var AddRemoveLayout = React.createClass({
         ResponsiveReactGridLayout,
         _extends({ onLayoutChange: this.onLayoutChange, onBreakpointChange: this.onBreakpointChange
         }, this.props),
-        this.createElement({ i: 0, x: 0, y: 0, w: 12, h: 4 }),
-        this.createElement({ i: 1, x: 0, y: 0, w: 4, h: 5 }),
-        this.createElement({ i: 2, x: 4, y: 0, w: 4, h: 5 }),
-        this.createElement({ i: 3, x: 8, y: 0, w: 4, h: 5 })
+        this.createElement({ i: 0, x: 0, y: 0, w: 8, h: 6 }),
+        this.createElement({ i: 1, x: 0, y: 6, w: 8, h: 8 }),
+        this.createElement({ i: 2, x: 8, y: 0, w: 4, h: 7 }),
+        this.createElement({ i: 3, x: 8, y: 7, w: 4, h: 7 })
       )
     );
   }
